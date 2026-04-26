@@ -63,11 +63,11 @@ function Contact() {
               <IconMail className="h-3.5 w-3.5" />
               Email
             </a>
-            <a href="#" className="glass-card-soft inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 hover:text-sky-300">
+            <a href="https://github.com/bimanthaperera-lab" target="_blank" rel="noopener noreferrer" className="glass-card-soft inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 hover:text-sky-300">
               <IconCode className="h-3.5 w-3.5" />
               GitHub
             </a>
-            <a href="#" className="glass-card-soft inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 hover:text-sky-300">
+            <a href="https://www.linkedin.com/in/bimantha-perera-733a46320/" target="_blank" rel="noopener noreferrer" className="glass-card-soft inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 hover:text-sky-300">
               <IconLink className="h-3.5 w-3.5" />
               LinkedIn
             </a>

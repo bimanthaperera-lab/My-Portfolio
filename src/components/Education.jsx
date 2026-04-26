@@ -2,28 +2,28 @@ import { IconCode, IconFolder } from './Icons'
 
 const education = [
   {
-    period: '2023 – Present',
-    degree: 'BSc (Hons) in Software Engineering',
-    institution: 'Sri Lanka Institute of Information Technology (SLIIT)',
+    period: 'Jan 2024 – Ongoing',
+    degree: 'Higher National Diploma (HND) in Software Engineering',
+    institution: 'ICBT Campus',
     description:
-      'Studying software engineering with a focus on full-stack development, data structures, algorithms, and modern web technologies.',
-    highlights: ['Dean\'s List', 'GPA: 3.5+', 'Full-Stack Projects'],
+      'Currently pursuing a Higher National Diploma in Software Engineering, building expertise in full-stack development, software design patterns, and modern web technologies.',
+    highlights: ['Software Engineering', 'Full-Stack Dev', 'Ongoing'],
   },
   {
-    period: '2020 – 2022',
-    degree: 'GCE Advanced Level – Physical Science',
-    institution: 'Royal College, Colombo',
+    period: 'Jan 2020 – Jan 2022',
+    degree: 'GCE Advanced Level (A/L) – Biology, Physics, Chemistry',
+    institution: 'St. Benedict\'s College, Colombo-13',
     description:
-      'Completed Advanced Level studies in Combined Mathematics, Physics, and Chemistry with strong academic results.',
-    highlights: ['Physical Science', 'Mathematics', 'University Entrance'],
+      'Completed Advanced Level studies in the Biological Science stream with Biology, Physics, and Chemistry.',
+    highlights: ['Biology', 'Physics', 'Chemistry'],
   },
   {
-    period: '2015 – 2019',
-    degree: 'GCE Ordinary Level',
-    institution: 'Royal College, Colombo',
+    period: '',
+    degree: 'GCE Ordinary Level (O/L)',
+    institution: 'Christ King College, Wattala',
     description:
-      'Completed O/L examination with excellent results, building a solid academic foundation.',
-    highlights: ['9 A Passes', 'ICT', 'Mathematics'],
+      'Completed Ordinary Level examination, establishing a strong academic foundation across core subjects.',
+    highlights: ['O/L Completed', 'Core Subjects'],
   },
 ]
 
@@ -67,10 +67,12 @@ function Education() {
             />
 
             {/* Period badge */}
-            <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-300/30 bg-sky-400/10 px-3 py-1 text-xs font-medium text-sky-200">
-              <IconCalendar className="h-3 w-3" />
-              {item.period}
-            </span>
+            {item.period && (
+              <span className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-sky-300/30 bg-sky-400/10 px-3 py-1 text-xs font-medium text-sky-200">
+                <IconCalendar className="h-3 w-3" />
+                {item.period}
+              </span>
+            )}
 
             {/* Degree */}
             <h3 className="mt-2 flex items-start gap-2 text-lg font-semibold text-white">

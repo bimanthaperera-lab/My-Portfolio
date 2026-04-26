@@ -23,10 +23,10 @@ function Footer() {
 
           {/* Social Links */}
           <div className="flex gap-4">
-            <a href="#" aria-label="GitHub" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-400 transition-all hover:border-sky-400/30 hover:bg-sky-400/10 hover:text-sky-300 hover:shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+            <a href="https://github.com/bimanthaperera-lab" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-400 transition-all hover:border-sky-400/30 hover:bg-sky-400/10 hover:text-sky-300 hover:shadow-[0_0_15px_rgba(56,189,248,0.2)]">
               <IconCode className="h-4 w-4" />
             </a>
-            <a href="#" aria-label="LinkedIn" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-400 transition-all hover:border-sky-400/30 hover:bg-sky-400/10 hover:text-sky-300 hover:shadow-[0_0_15px_rgba(56,189,248,0.2)]">
+            <a href="https://www.linkedin.com/in/bimantha-perera-733a46320/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-400 transition-all hover:border-sky-400/30 hover:bg-sky-400/10 hover:text-sky-300 hover:shadow-[0_0_15px_rgba(56,189,248,0.2)]">
               <IconLink className="h-4 w-4" />
             </a>
             <a href="mailto:bimantha@example.com" aria-label="Email" className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-400 transition-all hover:border-sky-400/30 hover:bg-sky-400/10 hover:text-sky-300 hover:shadow-[0_0_15px_rgba(56,189,248,0.2)]">

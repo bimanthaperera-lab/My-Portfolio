@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import profileImg from '../assets/BimanthaPerera.jpeg'
 
 const roles = ['Software Engineering Student', 'Web Developer', 'Problem Solver']
 
@@ -81,8 +82,12 @@ function Hero() {
               Open to Work
             </span>
           </div>
-          <div className="flex h-32 items-center justify-center rounded-2xl border border-white/12 bg-gradient-to-b from-white/[0.09] to-white/[0.02] text-4xl font-semibold text-sky-200 backdrop-blur-[18px]">
-            BP
+          <div className="overflow-hidden rounded-2xl border border-white/12 bg-gradient-to-b from-white/[0.09] to-white/[0.02] backdrop-blur-[18px]">
+            <img
+              src={profileImg}
+              alt="Bimantha Perera"
+              className="h-52 w-full object-cover object-[center_20%]"
+            />
           </div>
           <div className="mt-6 grid grid-cols-2 gap-3 text-sm">
             <div className="rounded-xl border border-white/12 bg-gradient-to-b from-white/[0.09] to-white/[0.02] p-3 backdrop-blur-[18px]">

@@ -1,4 +1,5 @@
 import { IconCode, IconFolder, IconUser } from './Icons'
+import profileImg from '../assets/BimanthaPerera.jpeg'
 
 function About() {
   return (
@@ -19,8 +20,12 @@ function About() {
 
           {/* Left Avatar / Graphic */}
           <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-2xl border border-white/12 bg-gradient-to-b from-white/[0.09] to-white/[0.02] p-8 md:min-h-[260px]">
-            <div className="flex h-20 w-20 items-center justify-center rounded-full border border-sky-400/30 bg-sky-400/10 text-sky-300 shadow-[0_0_24px_rgba(56,189,248,0.25)] transition-transform duration-500 group-hover:scale-110">
-              <IconUser className="h-10 w-10" />
+            <div className="h-28 w-28 overflow-hidden rounded-full border-2 border-sky-400/30 shadow-[0_0_24px_rgba(56,189,248,0.25)] transition-transform duration-500 group-hover:scale-110">
+              <img
+                src={profileImg}
+                alt="Bimantha Perera"
+                className="h-full w-full object-cover"
+              />
             </div>
             <p className="mt-5 text-center text-sm font-semibold tracking-[0.2em] text-sky-200">
               BIMANTHA
