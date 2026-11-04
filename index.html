@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a0b" />
+    <meta
+      name="description"
+      content="Bimantha Perera — full-stack and Android developer based in Colombo, Sri Lanka."
+    />
+    <title>Bimantha Perera — Software Engineer</title>
+    <!-- Apply the saved (or system) theme before first paint, so there's no flash. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var light = saved
+            ? saved === "light"
+            : window.matchMedia("(prefers-color-scheme: light)").matches;
+          if (light) {
+            document.documentElement.classList.add("light");
+            document.querySelector('meta[name="theme-color"]').content = "#f7f5f0";
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
