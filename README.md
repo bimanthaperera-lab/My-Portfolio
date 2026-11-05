@@ -9,10 +9,12 @@ My personal portfolio: a fast, single-page site with a dark-first, developer-foc
 ## Features
 
 - **Hero** with a "pop-out" avatar, a letter-by-letter name reveal and a code card that types itself out
+- **About** with a short story, quick facts and how I work
 - **Projects** with framed screenshots ([NexCV](https://github.com/Nexcv-dev/AI-CV-Builder) and PickSmart)
 - **Case studies** for each project in an accessible modal, with shareable links like `/#projects/nexcv`
 - **Download CV** buttons in the navbar, hero and contact section
 - **Experience** timeline whose line fills in as you scroll
+- **GitHub activity**, live: a contribution graph, streaks and recently pushed repos
 - **Skills** grid plus an endless, pausable strip of tech logos in their brand colours
 - **Contact** section with one-click copy for the email address
 - **Light / dark theme**, switched with a circular reveal that spreads from the toggle (View Transitions API), remembered per visitor, no flash on load
@@ -42,6 +44,7 @@ All text, links and lists live in `src/data/`, so content changes never touch co
 | File            | Contents                                           |
 | --------------- | -------------------------------------------------- |
 | `profile.ts`    | Name, role, summary, availability, email, socials  |
+| `about.ts`      | About section story, facts and principles          |
 | `projects.ts`   | Project cards, screenshots, links and case studies |
 | `resume.ts`     | CV download (put the PDF in `src/assets/cv/`)      |
 | `experience.ts` | Work and education timeline                        |

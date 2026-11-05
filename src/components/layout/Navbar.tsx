@@ -27,7 +27,7 @@ export function Navbar() {
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    const desktop = window.matchMedia("(min-width: 768px)");
+    const desktop = window.matchMedia("(min-width: 1024px)");
     const onResize = () => desktop.matches && setOpen(false);
     window.addEventListener("keydown", onKey);
     desktop.addEventListener("change", onResize);
@@ -56,9 +56,9 @@ export function Navbar() {
       >
         <Logo onClick={close} />
 
-        <div className="flex items-center gap-1 md:gap-3">
+        <div className="flex items-center gap-1 lg:gap-3">
           {/* Desktop links */}
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden items-center gap-3 lg:flex">
             <NavLinks items={navItems} active={active} />
             <span className="h-4 w-px bg-ink-800" aria-hidden />
           </div>
@@ -71,7 +71,7 @@ export function Navbar() {
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub"
-            className="hidden size-9 items-center justify-center rounded-full text-ink-400 transition-colors hover:bg-ink-900 hover:text-ink-50 md:flex"
+            className="hidden size-9 items-center justify-center rounded-full text-ink-400 transition-colors hover:bg-ink-900 hover:text-ink-50 lg:flex"
           >
             <GitHubIcon size={17} />
           </a>
@@ -85,7 +85,7 @@ export function Navbar() {
             aria-expanded={open}
             aria-controls={MENU_ID}
             aria-label={open ? "Close menu" : "Open menu"}
-            className="-mr-2 flex size-10 items-center justify-center rounded-full text-ink-200 transition-colors hover:bg-ink-900 md:hidden"
+            className="-mr-2 flex size-10 items-center justify-center rounded-full text-ink-200 transition-colors hover:bg-ink-900 lg:hidden"
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>

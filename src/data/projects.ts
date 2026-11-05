@@ -169,11 +169,14 @@ export const projects: readonly Project[] = [
     description:
       "An Android app for Uber and PickMe drivers in Sri Lanka. It estimates whether a trip will make or lose money, so drivers can decide before they accept the ride.",
     highlights: [
-      "Core profit/loss estimate shown before a ride is accepted",
-      "Built natively for Android in Kotlin",
-      "Made for Uber and PickMe drivers in Sri Lanka",
+      "Check a Ride: the real profit of an offer before it's accepted",
+      "Trip history, fuel log, expenses and other income",
+      "Daily, weekly and monthly reports with Estimated and Cash views",
+      "Fuel prices kept up to date from published CPC prices",
+      "Multiple vehicles, each trip keeping the rates it was saved with",
+      "CSV export, light and dark themes, works fully offline",
     ],
-    stack: ["Kotlin", "Android"],
+    stack: ["Kotlin", "Jetpack Compose", "Material 3", "Room", "DataStore", "Firebase Auth"],
     links: [
       { label: "Source", href: "https://github.com/bimanthaperera-lab/PickSmart", kind: "source" },
     ],
@@ -185,19 +188,78 @@ export const projects: readonly Project[] = [
       height: 1336,
       glow: "#fbbf24",
     },
-    // TODO(Bimantha): add the decisions, challenges and how-it-works steps
-    // once they're settled. Empty sections are hidden automatically.
     caseStudy: {
       summary:
-        "A native Android app that answers one question for ride-hailing drivers: is this trip worth taking?",
+        "A local-first Android app that tells ride-hailing drivers what an offer will really earn, then tracks their actual profit day by day.",
       problem:
-        "Uber and PickMe drivers in Sri Lanka see a fare, but not what the trip will actually leave them with once their running costs are taken out. They have a few seconds to accept a ride, so a trip that looks fine can end up losing money.",
+        "Uber and PickMe drivers in Sri Lanka see a fare, but not what the trip leaves them with after commission, fuel and wear on the vehicle, including the unpaid kilometres to the pickup. They have a few seconds to accept, so an offer that looks fine can lose money, and at the end of the week it's hard to tell what they really earned.",
       goals: [
-        "Show a clear profit or loss estimate before the driver accepts a ride",
-        "Keep it fast and simple enough to use in the few seconds a ride request is on screen",
-        "Track the day's estimated net profit at a glance",
+        "Check an offer in three field edits or fewer, with the result visible without scrolling on a small phone",
+        "Numbers that are correct to the cent and always add up",
+        "Fully usable offline and without an account",
+        "Never read or automate the ride apps: the driver types or confirms every number",
       ],
-      next: ["Finish the core estimate flow", "Test with working drivers", "Release on Google Play"],
+      decisions: [
+        {
+          title: "A pure, tested profit calculator",
+          body: "All the maths lives in one plain Kotlin class with no Android code. It uses BigDecimal and a written rounding policy, returns typed validation errors instead of throwing (never NaN or Infinity), and is pinned down by golden tests that must pass exactly.",
+        },
+        {
+          title: "Local-first, account optional",
+          body: "Trips, vehicles and settings live on the phone in Room and DataStore, so every core screen works with no internet. Signing in with Firebase Auth (email or Google) is optional and never required to use the app.",
+        },
+        {
+          title: "Every trip keeps its own rates",
+          body: "A saved trip stores a snapshot of the fuel price, km/L and maintenance reserve it was calculated with, so changing a vehicle or a fuel price later never rewrites past profits.",
+        },
+        {
+          title: "Offers are never income",
+          body: "A checked offer is kept apart from completed trips and never counted in earnings. Reports offer an Estimated view and a Cash view, with tests proving nothing is counted twice.",
+        },
+        {
+          title: "Fuel prices from a published file",
+          body: "Instead of scraping the CPC website (which would break every installed copy when the site changes), the app reads a small JSON file of official prices, at most every 12 hours, and never overwrites a price the driver typed by hand.",
+        },
+        {
+          title: "No reading of other apps",
+          body: "No accessibility-service reading, screen capture or automated taps on Uber or PickMe. Ride apps run anti-automation checks that could flag a driver's account, Play policy restricts those APIs, and constant screen capture drains low-end phones. The driver types or confirms the numbers instead.",
+        },
+      ],
+      flow: {
+        title: "How a ride check works",
+        steps: [
+          { label: "Enter", detail: "Fare, pickup km, trip km and an optional return trip" },
+          { label: "Rates", detail: "Fuel price, km/L and reserve pre-filled from the active vehicle" },
+          { label: "Calculate", detail: "Commission, fuel and maintenance taken off the fare" },
+          { label: "Result", detail: "Net profit, profit per km and a band against the target" },
+          { label: "Save", detail: "Keep it as an offer, or mark it taken with its rates" },
+        ],
+      },
+      challenges: [
+        {
+          title: "Money that always adds up",
+          body: "Rounding each part separately can leave the breakdown a cent off the total. Net profit is computed from the already-rounded parts, so what the driver sees always adds up to the figure shown.",
+        },
+        {
+          title: "Updates that never lose data",
+          body: "The database has gone through several schema versions. Each change ships a tested Room migration, destructive migrations are banned, and an update never sends an existing driver back through setup.",
+        },
+        {
+          title: "Small screens and large fonts",
+          body: "Every screen is checked at 360 × 640 dp and 200% font size. That caught labels like \"Month\" breaking mid-word and weekday labels running together on the report chart.",
+        },
+      ],
+      learned: [
+        "Writing the rules and the golden tests before building the UI",
+        "Designing a database schema to survive years of app updates",
+        "Building accessible, fast screens with Jetpack Compose and Material 3",
+      ],
+      next: [
+        "Screenshot import with on-device text recognition, always confirmed by the driver",
+        "A shift notification showing the minimum fare per km worth accepting",
+        "Optional cloud backup for signed-in drivers",
+        "Release on Google Play",
+      ],
     },
   },
 ];

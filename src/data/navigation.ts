@@ -4,9 +4,11 @@
  * "01", "02"… numbers shown in the navbar and in each section heading.
  */
 export const navItems = [
+  { id: "about", label: "about" },
   { id: "projects", label: "projects" },
   { id: "experience", label: "experience" },
   { id: "skills", label: "skills" },
+  { id: "github", label: "github" },
   { id: "contact", label: "contact" },
 ] as const;
 

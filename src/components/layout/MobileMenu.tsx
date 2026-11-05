@@ -17,7 +17,7 @@ export function MobileMenu({ id, open, items, active, onNavigate }: MobileMenuPr
       {open && (
         <motion.div
           id={id}
-          className="absolute inset-x-0 top-full border-b border-ink-800 bg-ink-950 md:hidden"
+          className="absolute inset-x-0 top-full border-b border-ink-800 bg-ink-950 lg:hidden"
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}

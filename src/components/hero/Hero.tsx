@@ -103,7 +103,7 @@ export function Hero() {
         />
       </div>
 
-      <ScrollHint href="#projects" delay={T.scrollHint} />
+      <ScrollHint href="#about" delay={T.scrollHint} />
     </section>
   );
 }

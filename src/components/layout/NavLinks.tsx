@@ -17,7 +17,7 @@ export function NavLinks({ items, active }: NavLinksProps) {
             <a
               href={`#${item.id}`}
               aria-current={isActive ? "location" : undefined}
-              className={`relative isolate block rounded-full px-3.5 py-1.5 font-mono text-xs transition-colors ${
+              className={`relative isolate block rounded-full px-3.5 py-1.5 whitespace-nowrap font-mono text-xs transition-colors ${
                 isActive ? "text-ink-50" : "text-ink-400 hover:text-ink-50"
               }`}
             >
