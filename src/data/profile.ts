@@ -20,7 +20,7 @@ export const profile = {
   email: "bimanthaperera55@gmail.com",
   socials: {
     github: "https://github.com/bimanthaperera-lab",
-    linkedin: "https://www.linkedin.com/in/bimanthaperera",
+    linkedin: "https://www.linkedin.com/in/bimantha-perera",
   },
 } as const;
 

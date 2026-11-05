@@ -81,4 +81,4 @@ Logos from [Simple Icons](https://simpleicons.org), UI icons from [Lucide](https
 
 ## Contact
 
-[bimanthaperera55@gmail.com](mailto:bimanthaperera55@gmail.com) · [LinkedIn](https://www.linkedin.com/in/bimanthaperera) · [GitHub](https://github.com/bimanthaperera-lab)
+[bimanthaperera55@gmail.com](mailto:bimanthaperera55@gmail.com) · [LinkedIn](https://www.linkedin.com/in/bimantha-perera) · [GitHub](https://github.com/bimanthaperera-lab)
