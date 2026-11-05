@@ -3,10 +3,9 @@ import { ResumeLink } from "../ui/ResumeLink";
 
 type HeroActionsProps = {
   primary: { label: string; href: string };
-  secondary: { label: string; href: string };
 };
 
-export function HeroActions({ primary, secondary }: HeroActionsProps) {
+export function HeroActions({ primary }: HeroActionsProps) {
   return (
     <div className="flex flex-wrap items-center gap-3">
       <a
@@ -19,12 +18,6 @@ export function HeroActions({ primary, secondary }: HeroActionsProps) {
           aria-hidden
           className="transition-transform duration-200 group-hover:translate-x-0.5"
         />
-      </a>
-      <a
-        href={secondary.href}
-        className="inline-flex h-11 items-center rounded-full border border-ink-800 px-5 text-sm font-medium text-ink-200 transition-colors hover:border-ink-600 hover:bg-ink-900 hover:text-ink-50"
-      >
-        {secondary.label}
       </a>
       <ResumeLink />
     </div>

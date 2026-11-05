@@ -30,12 +30,16 @@ export function Contact() {
           />
 
           <FadeIn inView delay={0.3} className="flex flex-col gap-5">
-            <a
-              href={`mailto:${email}`}
-              className="w-fit text-xl font-medium tracking-tight break-all text-ink-50 underline decoration-ink-600 decoration-1 underline-offset-8 transition-colors hover:decoration-accent sm:text-3xl lg:text-4xl"
-            >
-              {email}
-            </a>
+            {/* Email with the copy icon tucked into its top-right corner */}
+            <div className="relative w-fit pr-11 sm:pr-12">
+              <a
+                href={`mailto:${email}`}
+                className="text-xl font-medium tracking-tight break-all text-ink-50 underline decoration-ink-600 decoration-1 underline-offset-8 transition-colors hover:decoration-accent sm:text-3xl lg:text-4xl"
+              >
+                {email}
+              </a>
+              <CopyEmailButton email={email} className="absolute -top-2 right-0" />
+            </div>
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href={`mailto:${email}`}
@@ -43,7 +47,6 @@ export function Contact() {
               >
                 Send an email
               </a>
-              <CopyEmailButton email={email} />
               <ResumeLink />
             </div>
           </FadeIn>

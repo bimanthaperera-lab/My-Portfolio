@@ -82,10 +82,7 @@ export function Hero() {
 
           <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
             <FadeIn delay={T.actions}>
-              <HeroActions
-                primary={{ label: "View my work", href: "#projects" }}
-                secondary={{ label: "Get in touch", href: `mailto:${profile.email}` }}
-              />
+              <HeroActions primary={{ label: "View my work", href: "#projects" }} />
             </FadeIn>
             <FadeIn delay={T.socials}>
               <SocialLinks

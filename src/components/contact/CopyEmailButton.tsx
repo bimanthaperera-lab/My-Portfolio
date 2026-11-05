@@ -23,9 +23,11 @@ async function copyText(text: string): Promise<boolean> {
 
 type CopyEmailButtonProps = {
   email: string;
+  className?: string;
 };
 
-export function CopyEmailButton({ email }: CopyEmailButtonProps) {
+/** Icon-only button that copies the email, with a brief "copied" tag. */
+export function CopyEmailButton({ email, className = "relative" }: CopyEmailButtonProps) {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -48,23 +50,41 @@ export function CopyEmailButton({ email }: CopyEmailButtonProps) {
       type="button"
       onClick={copy}
       aria-label={copied ? "Email copied" : "Copy email address"}
-      className="inline-flex h-11 items-center gap-2 rounded-full border border-ink-800 px-4 font-mono text-xs text-ink-200 transition-colors hover:border-ink-600 hover:bg-ink-900 hover:text-ink-50"
+      title={copied ? "Copied" : "Copy email"}
+      // className must include a position (relative/absolute) for the "copied" tag
+      className={`flex size-9 items-center justify-center rounded-full border border-ink-800 text-ink-400 transition-colors hover:border-ink-600 hover:bg-ink-900 hover:text-ink-50 ${className}`}
     >
-      <span className="relative size-4">
-        <AnimatePresence initial={false} mode="popLayout">
+      <AnimatePresence initial={false} mode="popLayout">
+        <motion.span
+          key={copied ? "check" : "copy"}
+          className="absolute inset-0 flex items-center justify-center"
+          initial={{ opacity: 0, scale: 0.6 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.6 }}
+          transition={{ duration: 0.15 }}
+        >
+          {copied ? <Check size={15} className="text-accent" /> : <Copy size={15} />}
+        </motion.span>
+      </AnimatePresence>
+
+      {/* Little "copied" tag that pops up above the icon */}
+      <AnimatePresence>
+        {copied && (
           <motion.span
-            key={copied ? "check" : "copy"}
-            className="absolute inset-0"
-            initial={{ opacity: 0, scale: 0.6 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.6 }}
+            aria-hidden
+            className="pointer-events-none absolute bottom-full left-1/2 mb-2 -translate-x-1/2 rounded-md border border-ink-800 bg-ink-900 px-2 py-1 font-mono text-[11px] whitespace-nowrap text-accent"
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
             transition={{ duration: 0.15 }}
           >
-            {copied ? <Check size={16} className="text-accent" /> : <Copy size={16} />}
+            copied
           </motion.span>
-        </AnimatePresence>
+        )}
+      </AnimatePresence>
+      <span className="sr-only" aria-live="polite">
+        {copied ? "Email copied" : ""}
       </span>
-      <span aria-live="polite">{copied ? "copied" : "copy"}</span>
     </button>
   );
 }
