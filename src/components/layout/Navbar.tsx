@@ -7,6 +7,7 @@ import { useActiveSection } from "../../hooks/useActiveSection";
 import { useScrolled } from "../../hooks/useScrolled";
 import { DURATION, EASE_OUT } from "../../lib/motion";
 import { GitHubIcon } from "../icons/BrandIcons";
+import { ResumeLink } from "../ui/ResumeLink";
 import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { NavLinks } from "./NavLinks";
@@ -74,6 +75,8 @@ export function Navbar() {
           >
             <GitHubIcon size={17} />
           </a>
+
+          <ResumeLink variant="compact" className="ml-1" />
 
           {/* Mobile menu button */}
           <button

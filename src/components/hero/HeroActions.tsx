@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { ResumeLink } from "../ui/ResumeLink";
 
 type HeroActionsProps = {
   primary: { label: string; href: string };
@@ -25,6 +26,7 @@ export function HeroActions({ primary, secondary }: HeroActionsProps) {
       >
         {secondary.label}
       </a>
+      <ResumeLink />
     </div>
   );
 }

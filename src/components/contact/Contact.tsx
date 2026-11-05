@@ -1,6 +1,7 @@
 import { sectionIndex } from "../../data/navigation";
 import { profile } from "../../data/profile";
 import { FadeIn } from "../ui/FadeIn";
+import { ResumeLink } from "../ui/ResumeLink";
 import { SectionHeading } from "../ui/SectionHeading";
 import { ContactLinks } from "./ContactLinks";
 import { CopyEmailButton } from "./CopyEmailButton";
@@ -43,6 +44,7 @@ export function Contact() {
                 Send an email
               </a>
               <CopyEmailButton email={email} />
+              <ResumeLink />
             </div>
           </FadeIn>
         </div>

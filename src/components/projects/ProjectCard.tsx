@@ -1,6 +1,6 @@
 import type { MouseEvent } from "react";
 import { motion, type Variants } from "motion/react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import type { Project } from "../../data/projects";
 import { DURATION, EASE_OUT } from "../../lib/motion";
 import { GitHubIcon } from "../icons/BrandIcons";
@@ -19,14 +19,25 @@ function trackPointer(e: MouseEvent<HTMLElement>) {
   e.currentTarget.style.setProperty("--y", `${e.clientY - rect.top}px`);
 }
 
+/** Technologies shown on a compact card before collapsing to "+N". */
+const MAX_STACK = 5;
+
 type ProjectCardProps = {
   project: Project;
   index: number;
+  /** Opens the case study; the button only shows when this is given. */
+  onOpenCaseStudy?: () => void;
 };
 
-export function ProjectCard({ project, index }: ProjectCardProps) {
+export function ProjectCard({ project, index, onOpenCaseStudy }: ProjectCardProps) {
   const { name, tagline, role, status, started, description, highlights, stack, links } = project;
   const headingId = `project-${project.slug}`;
+
+  // With a case study, the card stays a short teaser: features move into the
+  // case study and only the first few technologies are listed here.
+  const compact = Boolean(onOpenCaseStudy);
+  const shownStack = compact ? stack.slice(0, MAX_STACK) : stack;
+  const hiddenStack = stack.length - shownStack.length;
 
   return (
     <motion.article
@@ -65,21 +76,23 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
       <p className="leading-relaxed text-ink-400">{description}</p>
 
-      <ul className="flex flex-col gap-2 text-sm text-ink-200">
-        {highlights.map((h) => (
-          <li key={h} className="flex gap-3">
-            <span className="font-mono text-accent" aria-hidden>
-              →
-            </span>
-            {h}
-          </li>
-        ))}
-      </ul>
+      {!compact && (
+        <ul className="flex flex-col gap-2 text-sm text-ink-200">
+          {highlights.map((h) => (
+            <li key={h} className="flex gap-3">
+              <span className="font-mono text-accent" aria-hidden>
+                →
+              </span>
+              {h}
+            </li>
+          ))}
+        </ul>
+      )}
 
       {/* mt-auto pins tags + links to the bottom so cards in a row line up */}
-      <div className="mt-auto flex flex-col gap-6 pt-2">
+      <div className="mt-auto flex flex-col gap-6">
         <ul className="flex flex-wrap gap-2" aria-label="Tech stack">
-          {stack.map((tech) => (
+          {shownStack.map((tech) => (
             <li
               key={tech}
               className="rounded-md border border-ink-800 bg-ink-950/60 px-2 py-1 font-mono text-[11px] text-ink-400"
@@ -87,10 +100,32 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               {tech}
             </li>
           ))}
+          {hiddenStack > 0 && (
+            <li className="px-1 py-1 font-mono text-[11px] text-ink-600">
+              +{hiddenStack}
+              <span className="sr-only"> more, listed in the case study</span>
+            </li>
+          )}
         </ul>
 
-        {links.length > 0 && (
-          <div className="flex flex-wrap gap-4 border-t border-ink-800 pt-5">
+        {(links.length > 0 || onOpenCaseStudy) && (
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-3 border-t border-ink-800 pt-5">
+            {onOpenCaseStudy && (
+              <button
+                type="button"
+                onClick={onOpenCaseStudy}
+                aria-haspopup="dialog"
+                aria-label={`Read the ${name} case study`}
+                className="group/cs inline-flex h-9 items-center gap-2 rounded-full bg-ink-50 px-4 text-sm font-medium text-ink-950 transition-colors hover:bg-ink-200 light:bg-accent light:text-white light:hover:bg-emerald-700"
+              >
+                Read case study
+                <ArrowRight
+                  size={15}
+                  aria-hidden
+                  className="transition-transform duration-200 group-hover/cs:translate-x-0.5"
+                />
+              </button>
+            )}
             {links.map((link) => (
               <a
                 key={link.href}

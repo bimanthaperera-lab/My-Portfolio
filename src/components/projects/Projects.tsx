@@ -1,10 +1,43 @@
+import { useCallback, useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { sectionIndex } from "../../data/navigation";
 import { projects } from "../../data/projects";
 import { SectionHeading } from "../ui/SectionHeading";
+import { CaseStudyDialog } from "./CaseStudyDialog";
 import { ProjectCard } from "./ProjectCard";
 
+/** Case studies get a shareable link like /#projects/nexcv. */
+const HASH_PREFIX = "#projects/";
+
+const slugFromHash = () =>
+  window.location.hash.startsWith(HASH_PREFIX)
+    ? window.location.hash.slice(HASH_PREFIX.length)
+    : null;
+
 export function Projects() {
+  const [openSlug, setOpenSlug] = useState<string | null>(null);
+
+  const openIndex = projects.findIndex((p) => p.slug === openSlug && p.caseStudy);
+  const open = openIndex >= 0 ? projects[openIndex] : null;
+
+  // Open from a shared link, and follow back/forward between hashes.
+  useEffect(() => {
+    const sync = () => setOpenSlug(slugFromHash());
+    sync();
+    window.addEventListener("hashchange", sync);
+    return () => window.removeEventListener("hashchange", sync);
+  }, []);
+
+  const show = useCallback((slug: string) => {
+    history.replaceState(null, "", `${HASH_PREFIX}${slug}`);
+    setOpenSlug(slug);
+  }, []);
+
+  const close = useCallback(() => {
+    history.replaceState(null, "", "#projects");
+    setOpenSlug(null);
+  }, []);
+
   return (
     <section
       id="projects"
@@ -27,9 +60,20 @@ export function Projects() {
         viewport={{ once: true, amount: 0.15 }}
       >
         {projects.map((project, i) => (
-          <ProjectCard key={project.slug} project={project} index={i} />
+          <ProjectCard
+            key={project.slug}
+            project={project}
+            index={i}
+            onOpenCaseStudy={project.caseStudy ? () => show(project.slug) : undefined}
+          />
         ))}
       </motion.div>
+
+      <CaseStudyDialog
+        project={open}
+        index={Math.max(openIndex, 0)}
+        onClose={close}
+      />
     </section>
   );
 }
